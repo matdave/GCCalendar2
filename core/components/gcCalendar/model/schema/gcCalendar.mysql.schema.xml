@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="gcCalendar" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+	
+	<object class="GcCalendarCals" table="gc_calendar_cals" extends="xPDOSimpleObject">
+		<field key="title" dbtype="varchar" precision="45" phptype="string" null="true" />
+		<field key="color" dbtype="varchar" precision="45" phptype="string" null="true" />
+		<field key="key" dbtype="varchar" precision="45" phptype="string" null="false" />
+        <composite alias="cals" class="GcCalendarCalsConnect" local="id" foreign="catid" cardinality="many" owner="local" />
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+      			<column key="id" collation="A" null="false" />
+      		</index>
+	</object>
+	<object class="GcCalendarCats" table="gc_calendar_cats" extends="xPDOSimpleObject">
+		<field key="ctitle" dbtype="varchar" precision="45" phptype="string" null="true" />
+		<field key="ccid" dbtype="varchar" precision="45" phptype="string" null="true" />
+        <composite alias="cats" class="GcCalendarCatsConnect" local="id" foreign="catsid" cardinality="many" owner="local" />
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+      			<column key="id" collation="A" null="false" />
+      		</index>
+	</object>
+	<object class="GcCalendarDates" table="gc_calendar_dates" extends="xPDOSimpleObject">
+        <field key="evid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="start" dbtype="varchar" precision="20" phptype="string" null="true" />
+        <field key="end" dbtype="varchar" precision="20" phptype="string" null="true" />
+        <field key="pr" dbtype="boolean" phptype="boolean" null="false" />
+        <field key="rep" dbtype="boolean" phptype="boolean" null="false" />
+        <field key="ov" dbtype="boolean" phptype="boolean" null="false" />
+        <field key="ad" dbtype="boolean" phptype="boolean" null="false" />
+        <composite alias="dates" class="GcCalendarDates" local="evid" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+      			<column key="id" collation="A" null="false" />
+      		</index>
+	</object>
+	<object class="GcCalendarEvents" table="gc_calendar_events" extends="xPDOSimpleObject">
+		<field key="cid" dbtype="varchar" precision="45" phptype="string" null="true" />
+		<field key="start" dbtype="varchar" precision="20" phptype="string" null="true" />
+		<field key="end" dbtype="varchar" precision="20" phptype="string" null="true" />
+		<field key="title" dbtype="varchar" precision="100" phptype="string" null="true" />
+		<field key="loc" dbtype="varchar" precision="255" phptype="string" null="true" />
+		<field key="notes" dbtype="text" phptype="string" null="true" />
+		<field key="ad" dbtype="boolean" phptype="boolean" null="false" />
+		<field key="cat" dbtype="varchar" precision="45" phptype="string" null="true" />
+		<field key="link" dbtype="varchar" precision="195" phptype="string" null="true" />
+		<field key="ov" dbtype="boolean" phptype="boolean" null="false" default="0"/>
+		<field key="previmage"  dbtype="text" phptype="string" null="true" />
+
+        <field key="locationcontact" dbtype="varchar" precision="45" phptype="string" null="true" />
+        <field key="locationphone" dbtype="varchar" precision="45" phptype="string" null="true" />
+        <field key="locationemail" dbtype="varchar" precision="150" phptype="string" null="true" />
+        <field key="locationname" dbtype="varchar" precision="100" phptype="string" null="true" />
+        <field key="locationaddr" dbtype="varchar" precision="150" phptype="string" null="true" />
+        <field key="locationcity" dbtype="varchar" precision="45" phptype="string" null="true" />
+        <field key="locationzip" dbtype="varchar" precision="45" phptype="string" null="true" />
+        <field key="locationstate" dbtype="varchar" precision="45" phptype="string" null="true" />
+
+        <field key="repeating" dbtype="boolean" phptype="boolean" null="false" default="0"/>
+        <field key="repeattype" dbtype="int" precision="1" phptype="integer" null="true"/>
+        <field key="repeaton" dbtype="varchar" precision="15" phptype="string" null="true"/>
+        <field key="repeatonmo" dbtype="varchar" precision="15" phptype="string" null="true"/>
+        <field key="repeatfrequency" dbtype="int" precision="2" phptype="int" null="true"/>
+        <field key="repeatenddate" dbtype="int" precision="20" phptype="int" null="true"/>
+        <field key="repeatdates" dbtype="text" phptype="string" null="true" />
+        <composite alias="dates" class="GcCalendarDates" local="id" foreign="evid" cardinality="many" owner="local" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+      			<column key="id" collation="A" null="false" />
+      		</index>
+	</object>
+
+    <!-- gcCalendar Category Connector-->
+       <object table="gc_calendar_cats_connect"  extends="xPDOSimpleObject" class="GcCalendarCatsConnect">
+   		<field key="evid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+   		<field key="catsid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+   		<index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+   			<column key="id" collation="A" null="false" />
+   		</index>
+       </object>
+    <!-- gcCalendar Calendar Connector-->
+       <object table="gc_calendar_cals_connect"  extends="xPDOSimpleObject" class="GcCalendarCalsConnect">
+   		<field key="evid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+   		<field key="calid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+   		<index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+   			<column key="id" collation="A" null="false" />
+   		</index>
+       </object>
+	
+</model>
