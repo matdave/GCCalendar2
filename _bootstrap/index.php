@@ -77,72 +77,38 @@ if (!createObject('modSystemSetting', array(
 ), 'key', false)) {
     echo "Error creating gcCalendar.assets_url setting.\n";
 }
-/*
-if (!createObject('modPlugin', array(
-    'name' => 'gcCalendar',
-    'static' => true,
-    'static_file' => $componentPath.'/_build/elements/plugins/gcCalendar.plugin.php',
-), 'name', true)) {
-    echo "Error creating gcCalendar Plugin.\n";
-}
-$vcPlugin = $modx->getObject('modPlugin', array('name' => 'gcCalendar'));
-if ($vcPlugin) {
-    if (!createObject('modPluginEvent', array(
-        'pluginid' => $vcPlugin->get('id'),
-        'event' => 'OnDocFormPrerender',
-        'priority' => 0,
-    ), array('pluginid','event'), false)) {
-        echo "Error creating modPluginEvent.\n";
-    }
-    if (!createObject('modPluginEvent', array(
-        'pluginid' => $vcPlugin->get('id'),
-        'event' => 'OnDocFormSave',
-        'priority' => 0,
-    ), array('pluginid','event'), false)) {
-        echo "Error creating modPluginEvent.\n";
-    }
-}
 
 // Snippets
 if (!createObject('modSnippet', array(
-    'name' => 'cbHasField',
+    'name' => 'gcCal',
     'static' => true,
-    'static_file' => $componentPath.'/_build/elements/snippets/cbhasfield.snippet.php',
+    'static_file' => $componentPath.'/assets/components/gcCalendar/snippets/gcCal.php',
 ), 'name', false)) {
-    echo "Error creating cbHasField snippet.\n";
+    echo "Error creating gcCal snippet.\n";
 }
-
 if (!createObject('modSnippet', array(
-    'name' => 'cbFileFormatSize',
+    'name' => 'gcCaliCal',
     'static' => true,
-    'static_file' => $componentPath.'/_build/elements/snippets/cbfileformatsize.snippet.php',
+    'static_file' => $componentPath.'/assets/components/gcCalendar/snippets/gcCaliCal.php',
 ), 'name', false)) {
-    echo "Error creating cbFileFormatSize snippet.\n";
+    echo "Error creating gcCaliCal snippet.\n";
 }
-
 if (!createObject('modSnippet', array(
-    'name' => 'cbGetFieldContent',
+    'name' => 'gcCalList',
     'static' => true,
-    'static_file' => $componentPath.'/_build/elements/snippets/cbgetfieldcontent.snippet.php',
+    'static_file' => $componentPath.'/assets/components/gcCalendar/snippets/gcCalList.php',
 ), 'name', false)) {
-    echo "Error creating cbGetFieldContent snippet.\n";
+    echo "Error creating gcCalList snippet.\n";
 }
-
-// Plugin event
-if (!createObject('modEvent', array(
-    'name' => 'gcCalendar_RegisterInputs',
-    'service' => 6,
-    'groupname' => 'gcCalendar',
+if (!createObject('modSnippet', array(
+    'name' => 'gcCalSelect',
+    'static' => true,
+    'static_file' => $componentPath.'/assets/components/gcCalendar/snippets/gcCalSelect.php',
 ), 'name', false)) {
-    echo "Error creating modEvent object.\n";
+    echo "Error creating gcCalSelect snippet.\n";
 }
-/*
-        <field key="name" dbtype="varchar" precision="50" phptype="string" null="false" index="pk" />
-        <field key="service" dbtype="tinyint" precision="4" attributes="unsigned" phptype="integer" null="false" default="0" />
-        <field key="groupname" dbtype="varchar" precision="20" phptype="string" null="false" default="" />*/
 
 // Menu
-
 if (!createObject('modAction', array(
     'namespace' => 'gcCalendar',
     'parent' => '0',
