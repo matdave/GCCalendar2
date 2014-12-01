@@ -314,73 +314,81 @@ gcCalendar.window.UpdategcCalendar = function(config) {
                     ,cellCls: 'valign-center'
 
                 }
-                ,items:[
-                    {xtype:'hidden',name:tp+'date['+i+'][ogid][]',value:(v)?v.id:'',id:c+'-date-id-'+tp+i+'-'+w},
-                    {columnWidth:.15, style:{marginTop:'3px',background:'transparent'}, html: '<label for="'+c+'allday'+tp+i+'-'+w+'" class="x-form-item-label">All Day:</label>'},
-                    {
-                    columnWidth:.85
-                    ,xtype: 'checkbox'
-                    ,labelStyle:'float:left;'
-                    ,fieldLabel: ('All Day')
+                ,items:[{
+                    xtype:'hidden',
+                    name:tp+'date['+i+'][ogid][]',
+                    value:(v)?v.id:'',
+                    id:c+'-date-id-'+tp+i+'-'+w
+                },{
+                    xtype: 'checkbox'
+                    ,boxLabel: ('All Day')
                     ,name: tp+'date['+i+'][ad][]'
                     ,id: c+'allday'+tp+i+'-'+w
                     ,checked: (v)?v.ad:config.record.ad
-                    ,listeners:{check:{fn:function(tht, value) {
+                    ,listeners:{
+                        check:{fn:function(tht, value) {
 
-                        var adFlag = Ext.getCmp(c+'allday'+tp+i+'-'+w);
-                        var sd = Ext.getCmp(c+'-date-start-his-'+tp+i+'-'+w);
-                        var ed = Ext.getCmp(c+'-date-end-his-'+tp+i+'-'+w);
+                            var adFlag = Ext.getCmp(c+'allday'+tp+i+'-'+w);
+                            var sd = Ext.getCmp(c+'-date-start-his-'+tp+i+'-'+w);
+                            var ed = Ext.getCmp(c+'-date-end-his-'+tp+i+'-'+w);
 
-                        if(adFlag.getValue() === true){
-                            if(ed.getValue() !== sd.getValue()){
-                                ed.setValue(sd.getValue());
+                            if(adFlag.getValue() === true){
+                                if(ed.getValue() !== sd.getValue()){
+                                    ed.setValue(sd.getValue());
+                                }
+                                ed.hide();
+                                sd.hide();
+                            } else {
+                                sd.show();
+                                ed.show();
                             }
-                            ed.hide();
-                            sd.hide();
-                        } else {
-                            sd.show();
-                            ed.show();
-                        }
+                        }}
                     }
-                }}},{ columnWidth:1, style:{marginTop:'10px',background:'transparent'}, html: '<label for="'+c+'-date-start-ymd-'+tp+i+'-'+w+'" class="x-form-item-label">Start:</label>'},{
-                                    xtype: 'datefield'
-                                    ,anchor: '50%'
-                                    ,split: true
-                                    ,columnWidth:.5
-                                    ,name: tp+'date['+i+'][startymd][]'
-                                    ,id: c+'-date-start-ymd-'+tp+i+'-'+w
-                                    ,value: (v)?v.startymd:config.record.startymd
-                                },{
-                                    xtype: 'timefield'
-                                    ,anchor: '50%'
-                                ,width:'100%'
-                                    ,split: true
-                                    ,columnWidth:.5
-                                    ,hidden: (v)?v.ad:false
-                                    ,name: tp+'date['+i+'][starthis][]'
-                                    ,id: c+'-date-start-his-'+tp+i+'-'+w
-                                    ,value: (v)?v.starthis:config.record.starthis
+                },{
+                    columnWidth:1,
+                    style:{marginTop:'10px',background:'transparent'},
+                    html: '<label for="'+c+'-date-start-ymd-'+tp+i+'-'+w+'" class="x-form-item-label">Start:</label>'
+                },{
+                    xtype: 'datefield'
+                    ,anchor: '50%'
+                    ,split: true
+                    ,columnWidth:.5
+                    ,name: tp+'date['+i+'][startymd][]'
+                    ,id: c+'-date-start-ymd-'+tp+i+'-'+w
+                    ,value: (v)?v.startymd:config.record.startymd
+                },{
+                    xtype: 'timefield'
+                    ,anchor: '50%'
+                    ,width:'100%'
+                    ,split: true
+                    ,columnWidth:.5
+                    ,hidden: (v)?v.ad:false
+                    ,name: tp+'date['+i+'][starthis][]'
+                    ,id: c+'-date-start-his-'+tp+i+'-'+w
+                    ,value: (v)?v.starthis:config.record.starthis
 
-                },{columnWidth:1, style:{marginTop:'10px',background:'transparent'}, html: '<label for="'+c+'-date-end-ymd-'+tp+i+'-'+w+'" class="x-form-item-label">End:</label>'},
-                    {
-                                    xtype: 'datefield'
-                                    ,anchor: '50%'
-                                    ,split: true
-                                    ,columnWidth:.5
-                                    ,name: tp+'date['+i+'][endymd][]'
-                                    ,id: c+'-date-end-ymd-'+tp+i+'-'+w
-                                    ,value: (v)?v.endymd:config.record.endymd
-                                },{
-                                    xtype: 'timefield'
-                                    ,anchor: '50%'
-                                ,width:'100%'
-                                    ,split: true
-                                    ,columnWidth:.5
-                                    ,hidden: (v)?v.ad:false
-                                    ,name: tp+'date['+i+'][endhis][]'
-                                    ,id: c+'-date-end-his-'+tp+i+'-'+w
-                                    ,value: (v)?v.endhis:config.record.endhis
-
+                },{
+                    columnWidth:1,
+                    style:{marginTop:'10px',background:'transparent'},
+                    html: '<label for="'+c+'-date-end-ymd-'+tp+i+'-'+w+'" class="x-form-item-label">End:</label>'
+                },{
+                    xtype: 'datefield'
+                    ,anchor: '50%'
+                    ,split: true
+                    ,columnWidth:.5
+                    ,name: tp+'date['+i+'][endymd][]'
+                    ,id: c+'-date-end-ymd-'+tp+i+'-'+w
+                    ,value: (v)?v.endymd:config.record.endymd
+                },{
+                    xtype: 'timefield'
+                    ,anchor: '50%'
+                    ,width:'100%'
+                    ,split: true
+                    ,columnWidth:.5
+                    ,hidden: (v)?v.ad:false
+                    ,name: tp+'date['+i+'][endhis][]'
+                    ,id: c+'-date-end-his-'+tp+i+'-'+w
+                    ,value: (v)?v.endhis:config.record.endhis
                 },{
                     xtype:'button'
                     ,text: ('Delete')
@@ -405,92 +413,51 @@ gcCalendar.window.UpdategcCalendar = function(config) {
         }
     Ext.applyIf(config,{
         title: modeTitle+' '+config.record.title
-        , id: config.record.id+'-update-window'
+        ,id: config.record.id+'-update-window'
         ,autoHeight: false
         ,height: Ext.getBody().getViewSize().height*.75
         ,width:Ext.getBody().getViewSize().width*.65
         ,autoScroll: false
         ,url: gcCalendar.config.connectorUrl
-        ,xtype: 'form'
-        ,layout: 'fit'
         ,closeAction:'close'
-        ,anchor:'100%'
-        ,plain: true
         ,baseParams: {
             action: (config.record.mode == 'duplicate')?'mgr/gcCalendar/create':'mgr/gcCalendar/update'
         }
-        ,defaults: {
+        /*),defaults: {
             layout:'form',
             defaultType: 'textfield',
             labelAlign: 'left',
             anchor: '100%',
             labelStyle:'float:left;',
             labelWidth: '100'
-        }
+        }*/
         ,fields: [{
-            xtype: 'container',
-            layout: 'border',
-            plain: true,
-            autoHeight: false,
-            autoScroll:true,
-            anchor:'100%',
-            height: '100%',
+            layout: 'column',
+            defaults: {
+                layout: 'form'
+            },
             items: [{
-
-
-            id: config.record.id+'-left-col',
-            xtype:'panel',
-                margins:'3 3 3 0',
-            region: 'west',
-            width: 350,
-            split: false,
-            collapsible: true,
-            autoHeight: false,
-                autoScroll: true,
-                height:"100%",
-                style:{borderRight:'1px solid #c3c3c3'},
-            title: 'Time Information',
+                columnWidth: 0.3,
+                title: 'Time Information',
                 items: [{
-                    xtype:'container',
-                    layout:'column',
-                    border: false,
-                    defaults: {
-                                // applied to each contained item
-                                // nothing this time
-                                anchor:'100%'
-                                ,layout: 'form'
-                                ,labelWidth: '100'
-                                ,cellCls: 'valign-center'
-
-                            },
-                    anchor: '95%',
-                    autoHeight: true,
-                    style:{marginTop:'15px',paddingLeft:'10px'},
-                    items: [{
-                        split:false,
-                        columnWidth: 1,
-                        items: [
-                        {
-                        xtype: 'hidden'
-                        ,id: config.record.id+'upid'
-                        ,name: 'id'
-                        ,value: config.record.id
-                        },{
-                        xtype: 'textfield'
-                        ,fieldLabel: _('gcCalendar.title')
-                        ,name: 'title'
-                        ,anchor:'100%'
-                        
-                        ,value: config.record.title
-                    },{
-                        xtype: 'checkbox'
-                        ,labelStyle:'float:left;'
-                        ,fieldLabel: _('gcCalendar.ad')
-                        ,name: 'ad'
-                        ,id: config.record.id+'allday'
-                        ,checked: config.record.ad ? true:false
-                        ,listeners:{check:{fn:function(tht, value) {
-
+                    xtype: 'hidden'
+                    ,id: config.record.id+'upid'
+                    ,name: 'id'
+                    ,value: config.record.id
+                },{
+                    xtype: 'textfield'
+                    ,fieldLabel: _('gcCalendar.title')
+                    ,name: 'title'
+                    ,anchor:'100%'
+                    ,value: config.record.title
+                },{
+                    xtype: 'checkbox'
+                    ,boxLabel: _('gcCalendar.ad')
+                    ,name: 'ad'
+                    ,id: config.record.id+'allday'
+                    ,checked: config.record.ad ? true:false
+                    ,listeners: {
+                        check:{fn:function(tht, value) {
                             var adFlag = Ext.getCmp(config.record.id+'allday');
                             var ed = Ext.getCmp(config.record.id+'timestart');
                             var sd = Ext.getCmp(config.record.id+'timeend');
@@ -507,277 +474,267 @@ gcCalendar.window.UpdategcCalendar = function(config) {
                                 sd.show();
                                 ed.show();
                             }
-                        }
-                    }}},{fieldLabel: _('gcCalendar.start')},{
-                                xtype:'container'
-                                ,layout: 'column'
-                                ,anchor:'100%'
-                                ,items:[{
-                                        xtype: 'datefield'
-                                        ,anchor: '50%'
-                                        ,split: true
-                                        ,columnWidth:.5
-                                        ,name: 'startymd'
-                                        ,id: config.record.id+'datestart'
-                                        ,value: config.record.startymd
-                                    },{
-                                        xtype: 'timefield'
-                                        ,anchor: '50%'
-                                    ,width:'100%'
-                                        ,split: true
-                                        ,columnWidth:.5
-                                        ,hidden: (config.record.ad)
-                                        ,name: 'starthis'
-                                        ,id: config.record.id+'timestart'
-                                        ,value: config.record.starthis
-                                }]
-                    },{fieldLabel: _('gcCalendar.end'),labelStyle:'margin-top:10px;display: block;margin-bottom: 0;'},{
-                                xtype:'container'
-                                ,layout: 'column'
-                                ,anchor:'100%'
-                                ,items:[{
-                                        xtype: 'datefield'
-                                        ,anchor: '50%'
-                                        ,split: true
-                                        ,columnWidth:.5
-                                        ,name: 'endymd'
-                                        ,id: config.record.id+'dateend'
-                                        ,value: config.record.endymd
-                                    },{
-                                        xtype: 'timefield'
-                                        ,anchor: '50%'
-                                    ,width:'100%'
-                                        ,split: true
-                                        ,hidden: (config.record.ad)
-                                        ,columnWidth:.5
-                                        ,name: 'endhis'
-                                        ,id: config.record.id+'timeend'
-                                        ,value: config.record.endhis
-                                }]
+                        }, scope: this}
+                    }
+                },{
+                    fieldLabel: _('gcCalendar.start')
+                },{
+                    xtype:'container'
+                    ,layout: 'column'
+                    ,anchor:'100%'
+                    ,items:[{
+                        xtype: 'datefield'
+                        ,anchor: '50%'
+                        ,split: true
+                        ,columnWidth:.5
+                        ,name: 'startymd'
+                        ,id: config.record.id+'datestart'
+                        ,value: config.record.startymd
                     },{
-                        xtype: 'superboxselect',
-                        displayField: 'title',
-                        valueField: 'id',
-                        forceSelection: true,labelStyle:'margin-top:10px;display: block;margin-bottom: 0;',
-                        store: new Ext.data.JsonStore({
-                            root: 'results',
-                            idProperty: 'id',
-                            url: gcCalendar.config.connectorUrl,
-                            baseParams: {
-                                action: 'mgr/store/getCals'
-                            },
-                            fields: [
-                                'id', 'title'
-                            ]
-                        }),
-                        mode: 'remote',
-                        triggerAction: 'all',
-                        fieldLabel: _('gcCalendar.calendar'),
-                                hiddenName: 'cid[]',
-                        name: 'cid[]',
-                        id: config.record.id+'cid',
-                        allowBlank: false,
-                        typeAhead:true,
-                        minChars:1,
-                        emptyText:('Select Calendar'),
-                        valueNotFoundText:('Calendar Not Found'),
-                        anchor:'100%',
-                        value: config.record.cid
-
+                        xtype: 'timefield'
+                        ,anchor: '50%'
+                        ,width:'100%'
+                        ,split: true
+                        ,columnWidth:.5
+                        ,hidden: (config.record.ad)
+                        ,name: 'starthis'
+                        ,id: config.record.id+'timestart'
+                        ,value: config.record.starthis
+                    }]
+                },{
+                    fieldLabel: _('gcCalendar.end'),
+                    labelStyle:'margin-top:10px;display: block;margin-bottom: 0;'
+                },{
+                    xtype:'container'
+                    ,layout: 'column'
+                    ,anchor:'100%'
+                    ,items:[{
+                        xtype: 'datefield'
+                        ,anchor: '50%'
+                        ,split: true
+                        ,columnWidth:.5
+                        ,name: 'endymd'
+                        ,id: config.record.id+'dateend'
+                        ,value: config.record.endymd
                     },{
-                        xtype: 'superboxselect',
-                        displayField: 'ctitle',
-                        valueField: 'id',
-                        forceSelection: true,
-                        allowAddNewData: true,
-                        addNewDataOnBlur : true,
-                        store: new Ext.data.JsonStore({
-                            root: 'results',
-                            idProperty: 'id',
-                            url: gcCalendar.config.connectorUrl,
-                            baseParams: {
-                                action: 'mgr/store/getCategories'
-                            },
-                            fields: [
-                                {name:'id',type:'int'}, {name:'ctitle',type:'string'}
-                            ]
-                        }),
-                        mode: 'remote',
-                        triggerAction: 'all',
-                        fieldLabel: _('gcCalendar.category'),
-                        name: 'cat[]',
-                                hiddenName:'cat[]',
-                        id: config.record.id+'cat',
-                        allowBlank: false,
-                        typeAhead:true,
-                        minChars:1,
-                        emptyText:('Select Category'),
-                        valueNotFoundText:('Category Not Found'),
-                        anchor:'100%',
-                        value: config.record.cat,
-                        listeners: {
-                            newitem: function(bs,v, f){
-                                v = v +'';
-                                v = v.slice(0,1).toUpperCase() + v.slice(1).toLowerCase();
-                                var newObj = {
-                                    ctitle: v
-                                };
-                                bs.addNewItem(newObj);
-                                //console.log(gcCalendar.config.connectorUrl + v);
-                                var conurl = gcCalendar.config.connectorUrl;
-                                var catData = {
-                                    ctitle: v
-                                    ,HTTP_MODAUTH: MODx.siteId
-                                    ,action: 'mgr/gcCalendar/createCats'
-                                };
+                        xtype: 'timefield'
+                        ,anchor: '50%'
+                        ,width:'100%'
+                        ,split: true
+                        ,hidden: (config.record.ad)
+                        ,columnWidth:.5
+                        ,name: 'endhis'
+                        ,id: config.record.id+'timeend'
+                        ,value: config.record.endhis
+                    }]
+                },{
+                    xtype: 'superboxselect',
+                    displayField: 'title',
+                    valueField: 'id',
+                    forceSelection: true,labelStyle:'margin-top:10px;display: block;margin-bottom: 0;',
+                    store: new Ext.data.JsonStore({
+                        root: 'results',
+                        idProperty: 'id',
+                        url: gcCalendar.config.connectorUrl,
+                        baseParams: {
+                            action: 'mgr/store/getCals'
+                        },
+                        fields: [
+                            'id', 'title'
+                        ]
+                    }),
+                    mode: 'remote',
+                    triggerAction: 'all',
+                    fieldLabel: _('gcCalendar.calendar'),
+                            hiddenName: 'cid[]',
+                    name: 'cid[]',
+                    id: config.record.id+'cid',
+                    allowBlank: false,
+                    typeAhead:true,
+                    minChars:1,
+                    emptyText:('Select Calendar'),
+                    valueNotFoundText:('Calendar Not Found'),
+                    anchor:'100%',
+                    value: config.record.cid
+                },{
+                    xtype: 'superboxselect',
+                    displayField: 'ctitle',
+                    valueField: 'id',
+                    forceSelection: true,
+                    allowAddNewData: true,
+                    addNewDataOnBlur : true,
+                    store: new Ext.data.JsonStore({
+                        root: 'results',
+                        idProperty: 'id',
+                        url: gcCalendar.config.connectorUrl,
+                        baseParams: {
+                            action: 'mgr/store/getCategories'
+                        },
+                        fields: [
+                            {name:'id',type:'int'}, {name:'ctitle',type:'string'}
+                        ]
+                    }),
+                    mode: 'remote',
+                    triggerAction: 'all',
+                    fieldLabel: _('gcCalendar.category'),
+                    name: 'cat[]',
+                    hiddenName:'cat[]',
+                    id: config.record.id+'cat',
+                    allowBlank: false,
+                    typeAhead:true,
+                    minChars:1,
+                    emptyText:('Select Category'),
+                    valueNotFoundText:('Category Not Found'),
+                    anchor:'100%',
+                    value: config.record.cat,
+                    listeners: {
+                        newitem: function(bs,v, f){
+                            v = v +'';
+                            v = v.slice(0,1).toUpperCase() + v.slice(1).toLowerCase();
+                            var newObj = {
+                                ctitle: v
+                            };
+                            bs.addNewItem(newObj);
+                            //console.log(gcCalendar.config.connectorUrl + v);
+                            var conurl = gcCalendar.config.connectorUrl;
+                            var catData = {
+                                ctitle: v
+                                ,HTTP_MODAUTH: MODx.siteId
+                                ,action: 'mgr/gcCalendar/createCats'
+                            };
 
 
-                                Ext.Ajax.request({
-                                    url: conurl,
-                                    params: catData,
-                                    scope: this,
-                                    success: function(response, opts){
-                                        //console.log('Success.');
-                                    },
-                                    failure: function(response, opts) {
-                                        //console.log('Failure.');
-                                    }
-                                });
-                            }
+                            Ext.Ajax.request({
+                                url: conurl,
+                                params: catData,
+                                scope: this,
+                                success: function(response, opts){
+                                    //console.log('Success.');
+                                },
+                                failure: function(response, opts) {
+                                    //console.log('Failure.');
+                                }
+                            });
                         }
-
+                    }
                 }]
-            }]}]
             },{
-                xtype: 'tabpanel',
-                region: 'center',
-                defaults: { border: false ,autoHeight: true },
-                border: true,
-                anchor: '95%',
-                autoHeight: true,
-                margins:'3 3 3 0',
-                padding:'5px',
-                activeTab: 0,
+                columnWidth: 0.7,
+                items: [{
+                    xtype: 'modx-tabs',
+                    defaults: {
+                        border: false,
+                        autoHeight: true ,
+                        layout: 'form',
+                    },
+                    border: true,
+                    autoHeight: true,
+                    activeTab: 0,
                     items: [{
-
                         title: 'Details',
                         id: config.record.id+'-details-tab',
                         items:[{
-                            xtype: 'panel',
-                            layout: 'form',
-                            border: false,
-                            defaults: {
-                                        // applied to each contained item
-                                        // nothing this time
-                                        anchor:'100%'
-                                        ,layout: 'form'
-                                        ,labelWidth: '100'
-                                        ,cellCls: 'valign-center'
-                                        
-                                    },
-                            anchor: '95%',
-                            autoHeight: true,
-                            items: [{
-                                    xtype: 'hidden'
-                                    ,name: 'previmage'
-                                    ,id:config.record.id+'update-image'
-                                ,value: config.record.previmage
+                            xtype: 'hidden'
+                            ,name: 'previmage'
+                            ,id:config.record.id+'update-image'
+                            ,value: config.record.previmage
 
-                                },{fieldLabel: ('Image')},{
-                                    xtype:'box'
-                                    ,id: config.record.id+'photoPreview'
-                                    ,anchor: 0
-                                    ,hidden: (!config.record.previmage)
-                                    ,autoEl: {
-                                        tag: 'img', src: config.record.previmage, style:{height:'175px'}
-                                    }
-                                },{
-                                    xtype:'container'
-                                    ,layout: 'column'
-                                    ,anchor:'95%'
-                                    ,items:[{
-                                        xtype:'button'
-                                        ,anchor: '50%'
-                                        ,id: config.record.id+'update-image-button'
-                                        ,columnWidth:.5
-                                        ,split:true
-                                        ,cls: 'x-btn-text bmenu'
-                                        ,style: { marginBottom: '15px'}
-                                        ,disabled: false
-                                        ,text: "Browse Images"
-                                        ,listeners: {
-                                            'click':{
-                                                fn: function(btn) {
-                                                    if (Ext.isEmpty(this.browser)) {
-                                                        this.browser = MODx.load({
-                                                            xtype: 'modx-browser'
-                                                            ,returnEl: null
-                                                            ,id: config.record.id+'update-image-browser'+config.record.window
-                                                            ,multiple: true
-                                                            ,config: MODx.config
-                                                            ,source: MODx.config.default_media_source || MODx.source
-                                                            ,allowedFileTypes: 'gif,jpg,jpeg,png'
-                                                            ,listeners: {
-                                                                'select': {fn: function(data) {
-                                                                    Ext.getCmp(config.record.id+'update-image').setValue('/'+data.fullRelativeUrl);
-                                                                    Ext.getCmp(config.record.id+'photoPreview').el.dom.src= '/'+data.fullRelativeUrl;
-                                                                    Ext.getCmp(config.record.id+'photoPreview').show();
-                                                                    Ext.getCmp(config.record.id+'update-photo-remove').show();
-                                                                    Ext.getCmp(config.record.id+'-details-tab').show();
-                                                                    //alert(Ext.encode(data));
-                                                                },scope:this}
-                                                            }
-                                                        });
+                        },{
+                            fieldLabel: ('Image')
+                        },{
+                            xtype:'box'
+                            ,id: config.record.id+'photoPreview'
+                            ,anchor: 0
+                            ,hidden: (!config.record.previmage)
+                            ,autoEl: {
+                                tag: 'img', src: config.record.previmage, style:{height:'175px'}
+                            }
+                        },{
+                            xtype:'container'
+                            ,layout: 'column'
+                            ,anchor:'95%'
+                            ,items:[{
+                                xtype:'button'
+                                ,anchor: '50%'
+                                ,id: config.record.id+'update-image-button'
+                                ,columnWidth:.5
+                                ,split:true
+                                ,cls: 'x-btn-text bmenu'
+                                ,style: { marginBottom: '15px'}
+                                ,disabled: false
+                                ,text: "Browse Images"
+                                ,listeners: {
+                                    'click':{
+                                        fn: function(btn) {
+                                            if (Ext.isEmpty(this.browser)) {
+                                                this.browser = MODx.load({
+                                                    xtype: 'modx-browser'
+                                                    ,returnEl: null
+                                                    ,id: config.record.id+'update-image-browser'+config.record.window
+                                                    ,multiple: true
+                                                    ,config: MODx.config
+                                                    ,source: MODx.config.default_media_source || MODx.source
+                                                    ,allowedFileTypes: 'gif,jpg,jpeg,png'
+                                                    ,listeners: {
+                                                        'select': {fn: function(data) {
+                                                            Ext.getCmp(config.record.id+'update-image').setValue('/'+data.fullRelativeUrl);
+                                                            Ext.getCmp(config.record.id+'photoPreview').el.dom.src= '/'+data.fullRelativeUrl;
+                                                            Ext.getCmp(config.record.id+'photoPreview').show();
+                                                            Ext.getCmp(config.record.id+'update-photo-remove').show();
+                                                            Ext.getCmp(config.record.id+'-details-tab').show();
+                                                            //alert(Ext.encode(data));
+                                                        },scope:this}
                                                     }
-                                                    this.browser.show(btn);
-                                                    return true;
-                                                }
-                                                ,scope:this
+                                                });
                                             }
+                                            this.browser.show(btn);
+                                            return true;
                                         }
-                                    },{
-                                        xtype:'button'
-                                        ,anchor: '50%'
-                                        ,hidden: (!config.record.previmage)
-                                        ,columnWidth:.5
-                                        ,split:true
-                                        ,id: config.record.id+'update-photo-remove'
-                                        ,cls: 'x-btn-text bmenu'
-                                        ,style: { marginBottom: '15px'}
-                                        ,disabled: false
-                                        ,text: "Clear Image"
-                                        ,listeners: {
-                                            'click':{
-                                                fn: function(btn) {
-                                                    Ext.getCmp(config.record.id+'update-image').setValue('');
-                                                    Ext.getCmp(config.record.id+'photoPreview').el.dom.src= '';
-                                                    Ext.getCmp(config.record.id+'photoPreview').hide();
-                                                    Ext.getCmp(config.record.id+'update-photo-remove').hide();
-                                                    Ext.getCmp(config.record.id+'-details-tab').show();
+                                        ,scope:this
+                                    }
+                                }
+                            },{
+                                xtype:'button'
+                                ,anchor: '50%'
+                                ,hidden: (!config.record.previmage)
+                                ,columnWidth:.5
+                                ,split:true
+                                ,id: config.record.id+'update-photo-remove'
+                                ,cls: 'x-btn-text bmenu'
+                                ,style: { marginBottom: '15px'}
+                                ,disabled: false
+                                ,text: "Clear Image"
+                                ,listeners: {
+                                    'click':{
+                                        fn: function(btn) {
+                                            Ext.getCmp(config.record.id+'update-image').setValue('');
+                                            Ext.getCmp(config.record.id+'photoPreview').el.dom.src= '';
+                                            Ext.getCmp(config.record.id+'photoPreview').hide();
+                                            Ext.getCmp(config.record.id+'update-photo-remove').hide();
+                                            Ext.getCmp(config.record.id+'-details-tab').show();
 
-                                                    return true;
-                                                }
-                                                ,scope:this
-                                            }
+                                            return true;
                                         }
-                                    }]},{
-                                        xtype: 'textfield'
-                                        
-                                        ,fieldLabel: _('gcCalendar.url')
-                                        ,name: 'link'
-                                        ,anchor: '95%'
-                                        ,value: config.record.link
-                                    },{
-                                        fieldLabel: _('gcCalendar.notes')
-                                        ,xtype: 'textarea'
-                                        ,name: 'notes'
-                                        ,id: config.record.id+'-notes-'+config.record.window
-                                        ,anchor: '95%'
-                                        ,value: config.record.notes
-                                    }]
-
-            }]
-            },{ title: 'Location',
+                                        ,scope:this
+                                    }
+                                }
+                            }]
+                        },{
+                            xtype: 'textfield'
+                            ,fieldLabel: _('gcCalendar.url')
+                            ,name: 'link'
+                            ,anchor: '95%'
+                            ,value: config.record.link
+                        },{
+                            fieldLabel: _('gcCalendar.notes')
+                            ,xtype: 'textarea'
+                            ,name: 'notes'
+                            ,id: config.record.id+'-notes-'+config.record.window
+                            ,anchor: '95%'
+                            ,value: config.record.notes
+                        }]
+                    },{
+                        title: 'Location',
                         id: config.record.id+'-location-tab',
                         items:[{
                             xtype: 'panel',
@@ -799,48 +756,42 @@ gcCalendar.window.UpdategcCalendar = function(config) {
                                 xtype:'textfield',
                                 name:'locationcontact',
                                 value:config.record.locationcontact
-                            },
-                           {
+                            },{
                                 fieldLabel:('Contact Phone'),
                                 xtype:'textfield',
                                 name:'locationphone',
-                               value:config.record.locationphone
-                            },
-                           {
+                                value:config.record.locationphone
+                            },{
                                 fieldLabel:('Contact Email'),
                                 xtype:'textfield',
                                 name:'locationemail',
                                 vtype:'email',
-                               value:config.record.locationemail
-                            },
-                           {
+                                value:config.record.locationemail
+                            },{
                                 fieldLabel:('Location Name'),
                                 xtype:'textfield',
                                 name:'locationname',
-                               value:config.record.locationname
-                            },
-                           {
+                                value:config.record.locationname
+                            },{
                                 fieldLabel:('Address'),
                                 xtype:'textfield',
                                 name:'locationaddr',
-                               value:config.record.locationaddr
-                            },
-                           {xtype:'container',
-                               layout:'column',
-                               border: false,
-                               defaults: {
+                                value:config.record.locationaddr
+                            },{
+                                layout:'column',
+                                border: false,
+                                defaults: {
                                    // applied to each contained item
                                    // nothing this time
-                                   anchor:'100%'
-                                   ,layout: 'form'
-                                   ,labelWidth: '100'
-                                   ,cellCls: 'valign-left'
-
-                               },
-                               anchor: '100%',
-                               autoHeight: true,
-                               style:{marginTop:'15px'},
-                               items:[{
+                                    anchor:'100%'
+                                    ,layout: 'form'
+                                    ,labelWidth: '100'
+                                    ,cellCls: 'valign-left'
+                                },
+                                anchor: '100%',
+                                autoHeight: true,
+                                style:{marginTop:'15px'},
+                                items:[{
                                     split:true,
                                     columnWidth:.5,
                                     html:'<label class="x-form-item-label">City</label>'
@@ -869,11 +820,11 @@ gcCalendar.window.UpdategcCalendar = function(config) {
                                     xtype:'textfield',
                                     name:'locationzip',
                                     value:config.record.locationzip
+                                }]
                             }]
-                           }]
                         }]
-
-                    },{ title: 'Repeating',
+                    },{
+                        title: 'Repeating',
                         id: config.record.id+'-repeat-tab',
                         items:[{
                             xtype: 'panel',
@@ -902,7 +853,7 @@ gcCalendar.window.UpdategcCalendar = function(config) {
                                 },
                                 listeners: {
                                     'beforecollapse' :  function(panel,ani) {
-                                        // Hide all the form fields you need to hide 
+                                        // Hide all the form fields you need to hide
                                         Ext.getCmp('urepeating-'+config.record.id).setValue('false');
                                         return true; // this will avoid collapse of the field set
                                     },
@@ -1082,41 +1033,42 @@ gcCalendar.window.UpdategcCalendar = function(config) {
                                     ,value: config.record.repeatenddate
                                     ,submitValue: true
                                 }]
-                            }]}]},{ title: 'Custom Dates',
-                                                    id: config.record.id+'-custom-tab',
-                                                    items:[{
-                                                        xtype: 'panel',
-                                                        layout: 'form',
-                                                        border: false,
-                                                        defaults: {
-                                                            // applied to each contained item
-                                                            // nothing this time
-                                                            anchor:'100%'
-                                                            ,layout: 'form'
-                                                            ,labelWidth: '100'
-                                                            ,cellCls: 'valign-center'
-
-                                                        },
-                                                        anchor: '95%',
-                                                        autoHeight: true,
-                                                        items: [{
-
-
-                                                                name: 'ov'
-                                                                ,id: 'ucustom-'+config.record.id
-                                                                ,xtype:'hidden'
-                                                                ,submitValue:true
-                                                                ,value:config.record.ov
-                                                            }
-                                                            ,{
-                                                                xtype: 'gcCalendar-grid-images',
-                                                                evid: config.record.id
-
-                                                            }]
+                            }]
                         }]
+                    },{
+                        title: 'Custom Dates',
+                        id: config.record.id+'-custom-tab',
+                        items:[{
+                            xtype: 'panel',
+                            layout: 'form',
+                            border: false,
+                            defaults: {
+                                // applied to each contained item
+                                // nothing this time
+                                anchor:'100%'
+                                ,layout: 'form'
+                                ,labelWidth: '100'
+                                ,cellCls: 'valign-center'
 
+                            },
+                            anchor: '95%',
+                            autoHeight: true,
+                            items: [{
+                                name: 'ov'
+                                ,id: 'ucustom-'+config.record.id
+                                ,xtype:'hidden'
+                                ,submitValue:true
+                                ,value:config.record.ov
+                            },{
+                                xtype: 'gcCalendar-grid-images',
+                                evid: config.record.id
+
+                            }]
+                        }]
                     }]
-        }]}]
+                }]
+            }]
+        }]
     });
     gcCalendar.window.UpdategcCalendar.superclass.constructor.call(this,config);
     this.on('afterrender',function() {
@@ -1125,7 +1077,8 @@ gcCalendar.window.UpdategcCalendar = function(config) {
         Ext.getCmp(config.record.id+'-repeat-tab').show();
         Ext.getCmp(config.record.id+'-custom-tab').show();
         Ext.getCmp(config.record.id+'-details-tab').show();
-        var w = this.getWidth()+2; this.setWidth(w);});
+        var w = this.getWidth()+2; this.setWidth(w);
+    });
     this.on('close',function() {
 
     });
