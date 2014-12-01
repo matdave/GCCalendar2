@@ -29,8 +29,6 @@ background-position: 0 -64px;
 .x-tool-left-over,.x-tool-collapse-west-over, .x-tool-expand-east-over{
     background-position: -16px -64px;
 }
-.x-panel {background:#fff;}
-
 .x-tab-strip .x-tab-with-icon span.x-tab-strip-text {
     padding-left: 0px;
 }
