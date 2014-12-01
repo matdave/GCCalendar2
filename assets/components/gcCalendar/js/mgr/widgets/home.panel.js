@@ -10,8 +10,7 @@ gcCalendar.panel.Home = function(config) {
     config = config || {};
     Ext.apply(config,{
         border: false
-        ,baseCls: 'modx-formpanel'
-        ,cls: 'container'
+        ,cls: 'container form-with-labels'
         ,items: [{
             html: '<h2>'+_('gcCalendar.management')+'</h2>'
             ,border: false
