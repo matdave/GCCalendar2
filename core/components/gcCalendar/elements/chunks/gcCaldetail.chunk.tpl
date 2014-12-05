@@ -16,5 +16,5 @@
     [[+locationaddr:ne=``:then=`[[+locationaddr]]<br/>`]]
     [[+locationcity:ne=``:then=`[[+locationcity]], `]][[+locationstate:ne=``:then=`[[+locationstate]] `]][[+locationzip]]
 </p>
-<p class="caption" style="font-size:.75em"><a href="[[+ical]]" rel="nofollow" target="_blank"><i class="icon-calendar" style="font-style:normal"></i> Add to my calendar (.ics)</a></p>
+<p class="caption" style="font-size:.75em"><a href="[[+ical]]" rel="nofollow" target="_blank"><i class="fa fa-calendar" style="font-style:normal"></i> Add to my calendar (.ics)</a></p>
 </div>
