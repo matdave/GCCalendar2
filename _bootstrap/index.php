@@ -107,6 +107,48 @@ if (!createObject('modSnippet', array(
 ), 'name', false)) {
     echo "Error creating gcCalSelect snippet.\n";
 }
+if (!createObject('modChunk', array(
+    'name' => 'gcCalday',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCalday.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCalday chunk.\n";
+}
+if (!createObject('modChunk', array(
+    'name' => 'gcCaldetail',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCaldetail.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCaldetail chunk.\n";
+}
+if (!createObject('modChunk', array(
+    'name' => 'gcCalheading',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCalheading.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCalheading chunk.\n";
+}
+if (!createObject('modChunk', array(
+    'name' => 'gcCalItem',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCalItem.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCalItem chunk.\n";
+}
+if (!createObject('modChunk', array(
+    'name' => 'gcCalList',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCalList.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCalList chunk.\n";
+}
+if (!createObject('modChunk', array(
+    'name' => 'gcCalmonth',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCalmonth.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCalmonth chunk.\n";
+}
+if (!createObject('modChunk', array(
+    'name' => 'gcCalweek',
+    'snippet' => file_get_contents($componentPath.'/core/components/gcCalendar/elements/chunks/gcCalweek.chunk.tpl'),
+), 'name', false)) {
+    echo "Error creating gcCalweek chunk.\n";
+}
 
 // Menu
 if (!createObject('modAction', array(
