@@ -5,7 +5,8 @@ gcCalendar.panel.gcCalendar = function(config){
         // names and mappings have all been customized. Note that the name of each field
         // definition object (e.g., 'EventId') should NOT be changed for the default fields
         // as it is the key used to access the field data programmatically.
-        EventId:     {name: 'id', mapping:'id', type:'int'},
+
+        EventId:     {name: 'repId', mapping:'repId', type:'int'},
         CalendarId:  {name: 'cid', mapping: 'cid', type: 'string'},
         Title:       {name: 'title', mapping: 'title'},
         StartDate:   {name: 'start', mapping: 'start', type: 'date', dateFormat: 'c'},
@@ -18,57 +19,40 @@ gcCalendar.panel.gcCalendar = function(config){
         Reminder:    {name: 'reminder', mapping: 'reminder'},
         
         //Custom Data
+        Id:     {name: 'id', mapping:'id', type:'int'},
         StartDay: {name:'startymd', mapping:'startymd', type: 'string'},
         StartTime: {name:'starthis', mapping:'starthis', type: 'string'},
         EndDay: {name:'endymd', mapping:'endymd', type: 'string'},
         EndTime: {name:'endhis', mapping:'endhis', type: 'string'},
         cat: {name:'cat', mapping:'cat', type: 'string'},
-        previmage: {name:'previmage', mapping:'previmage', type: 'string'}
+        previmage: {name:'previmage', mapping:'previmage', type: 'string'},
+        locationcontact: {name:'locationcontact', mapping:'locationcontact', type: 'string'},
+        locationphone: {name:'locationphone', mapping:'locationphone', type: 'string'},
+        locationemail: {name:'locationemail', mapping:'locationemail', type: 'string'},
+        locationname: {name:'locationname', mapping:'locationname', type: 'string'},
+        locationaddr: {name:'locationaddr', mapping:'locationaddr', type: 'string'},
+        locationcity: {name:'locationcity', mapping:'locationcity', type: 'string'},
+        locationzip: {name:'locationzip', mapping:'locationzip', type: 'string'},
+        locationstate: {name:'locationstate', mapping:'locationstate', type: 'string'},
+        repeating: {name:'repeating', mapping:'repeating', type: 'boolean'},
+        repeattype: {name:'repeattype', mapping:'repeattype', type: 'int'},
+        repeaton: {name:'repeaton', mapping:'repeaton', type: 'string'},
+        repeatonc: {name:'repeatonc', mapping:'repeatonc', type: 'string'},
+        repeatonmo: {name:'repeatonmo', mapping:'repeatonmo'},
+        repeatfrequency: {name:'repeatfrequency', mapping:'repeatfrequency', type: 'int'},
+        repeatenddate: {name:'repeatenddate', mapping:'repeatenddate'},
+        ov: {name:'ov', mapping:'ov', type: 'string'}
 
     };
     // Don't forget to reconfigure!
     Ext.ensible.cal.EventRecord.reconfigure();
     Ext.ensible.cal.EventEditWindow.override({
-        enableEditDetails : false
+        enableEditDetails :true
     });
     Ext.ensible.cal.CalendarView.override({
         getEventEditor : function(){
 
-            // only create one instance of the edit window, even if there are multiple CalendarPanels
-            /*this.editWin = this.editWin || Ext.WindowMgr.get('gcCalendar-window-gcCalendar-create');
 
-            if(!this.editWin){
-                this.editWin = new gcCalendar.window.CreategcCalendar({
-                    id: 'gcCalendar-window-gcCalendar-create',
-                    listeners: {
-                        'eventadd': {
-                            fn: function(win, rec, animTarget){
-                                //win.hide(animTarget);
-                                win.currentView.onEventAdd(null, rec);
-                            },
-                            scope: this
-                        },
-                        'eventdelete': {
-                            fn: function(win, rec, animTarget){
-                                MODx.msg.confirm({
-                                    title: _('gcCalendar.event_remove')
-                                    ,text: _('gcCalendar.event_remove_confirm')
-                                    ,url: gcCalendar.config.connectorUrl
-                                    ,params: {
-                                        action: 'mgr/gcCalendar/remove'
-                                        ,id: rec.id
-                                    }
-                                });
-                            },
-                            scope: this
-                        }
-                    }
-                });
-            }*/
-
-            // allows the window to reference the current scope in its callbacks
-            this.editWin.currentView = this;
-            return this.editWin;
         }
     });
     Ext.ensible.cal.EventContextMenu.override({
@@ -86,16 +70,44 @@ gcCalendar.panel.gcCalendar = function(config){
 
             Ext.apply(this, {
                 items: [{
+                    text: this.editDetailsText,
+                    iconCls: 'extensible-cal-icon-evt-edit',
+                    scope: this,
+                    handler: function(){
+
+                        console.log(this.rec);
+
+                        //this.fireEvent('eventdelete', this, this.rec, this.ctxEl);
+                        this.rec.data.window = Math.floor((Math.random()*1000)+1);
+                        this.rec.data.mode = 'update';
+                        if (this.updategcCalendarWindow) {
+                            //this.updategcCalendarWindow.destroy();
+                            this.updategcCalendarWindow = null;
+                        }
+                        if (!this.updategcCalendarWindow) {
+                            this.updategcCalendarWindow = MODx.load({
+                                xtype: 'gcCalendar-window-gcCalendar-update'
+                                ,record: this.rec.data
+                            });
+                        }
+                        this.updategcCalendarWindow.setValues(this.rec.data);
+                        this.updategcCalendarWindow.show();/* */
+                    }
+                },'-',{
                     text: this.deleteText,
                     iconCls: 'extensible-cal-icon-evt-del',
                     scope: this,
                     handler: function(){
-                        this.fireEvent('eventdelete', this, this.rec, this.ctxEl);
+                        MODx.msg.confirm({
+                            title: _('gcCalendar.event_remove')
+                            ,text: _('gcCalendar.event_remove_confirm')
+                            ,url: gcCalendar.config.connectorUrl
+                            ,params: {
+                                action: 'mgr/gcCalendar/remove'
+                                ,id: this.rec.data.id
+                            }
+                        });
                     }
-                },'-',{
-                    text: this.moveToText,
-                    iconCls: 'extensible-cal-icon-evt-move',
-                    menu: this.dateMenu
                 }]
             });
         }});
@@ -212,8 +224,8 @@ gcCalendar.panel.gcCalendar = function(config){
             id:'calendar-remote-calendar',
         xtype: 'extensible.calendarpanel',
         region: 'center',
-        enableEditDetails:false,
-        readOnly: true,
+        enableEditDetails:true,
+        readOnly: false,
         activeItem: 3,
         monthViewCfg: {
             showHeader: true,
@@ -257,16 +269,12 @@ gcCalendar.panel.gcCalendar = function(config){
 
                 'eventclick': {
                     fn: function(panel, rec, el){
-                        //console.log(panel, rec, el);
-                        // override the default edit handling
-                        //Ext.Msg.alert('App Click', 'Editing: ' + rec.data.Title);
 
-                        // return false to tell the CalendarPanel that we've handled the click and it
-                        // should ignore it (e.g., do not show the default edit window)
-                        //return false;
+                        console.log(rec);
 
-
+                        //this.fireEvent('eventdelete', this, this.rec, this.ctxEl);
                         rec.data.window = Math.floor((Math.random()*1000)+1);
+                        rec.data.mode = 'update';
                         if (this.updategcCalendarWindow) {
                             //this.updategcCalendarWindow.destroy();
                             this.updategcCalendarWindow = null;
@@ -275,14 +283,10 @@ gcCalendar.panel.gcCalendar = function(config){
                             this.updategcCalendarWindow = MODx.load({
                                 xtype: 'gcCalendar-window-gcCalendar-update'
                                 ,record: rec.data
-                                ,listeners: {
-                                    'success': {fn:this.refresh,scope:this}
-                                }
                             });
                         }
                         this.updategcCalendarWindow.setValues(rec.data);
-                        this.updategcCalendarWindow.show(el.target);
-                        //console.log(rec.data);
+                        this.updategcCalendarWindow.show();/* */
                     },
                     scope: this
                 },
@@ -328,37 +332,34 @@ gcCalendar.panel.gcCalendar = function(config){
             },
             'dayclick': {
                 fn: function(vw, dt, ad, el){
-                    this.clearMsg();
+                    console.log("VW:"+vw);
+                    console.log("DT:"+dt);
+                    return false;
                 },
                 scope: this
+
             },
             'rangeselect': {
-                fn: function(vw, dates, onComplete){
-                    this.clearMsg();
+                fn: function(){
+                    return false;
                 },
                 scope: this
             },
             'eventmove': {
-                fn: function(vw, rec){
-                    rec.commit();
-                    var time = rec.data[Ext.ensible.cal.EventMappings.IsAllDay.name] ? '' : ' \\a\\t g:i a';
-                    this.showMsg('Event '+ rec.data[Ext.ensible.cal.EventMappings.Title.name] +' was moved to '+
-                        rec.data[Ext.ensible.cal.EventMappings.StartDate.name].format('F jS'+time));
+                fn: function(){
+                    return false;
                 },
                 scope: this
             },
             'eventresize': {
-                fn: function(vw, rec){
-                    rec.commit();
-                    this.showMsg('Event '+ rec.data[Ext.ensible.cal.EventMappings.Title.name] +' was updated');
+                fn: function(){
+                    return false;
                 },
                 scope: this
             },
             'initdrag': {
-                fn: function(vw){
-                    if(this.editWin && this.editWin.isVisible()){
-                        this.editWin.hide();
-                    }
+                fn: function(){
+                    return false;
                 },
                 scope: this
             }
@@ -373,7 +374,7 @@ gcCalendar.panel.gcCalendar = function(config){
         showMsg: function(msg){
             Ext.fly('app-msg').update(msg).removeClass('x-hidden');
         },
-        apply: function(){ Ext.getCmp('calendar-remote-calendar').getActiveView().refresh(true);},
+        apply: function(){ },
 
         clearMsg: function(){
             Ext.fly('app-msg').update('').addClass('x-hidden');

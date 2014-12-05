@@ -49,11 +49,7 @@ class gcCalendarHomeManagerController extends gcCalendarManagerController {
         $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/gcCalendar.grid.js');
         $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/gcCalendar.calendars.js');
         $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/gcCalendar.categories.js');
-        if($this->modx->user->isMember('Administrator')) {
-            $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/gcCalendar.ensible.dev.js');
-        }else{
-            $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/gcCalendar.ensible.js');
-        }
+        $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/gcCalendar.ensible.js');
         $this->addJavascript($this->gcCalendar->config['jsUrl'].'mgr/widgets/home.panel.js');
         $this->addLastJavascript($this->gcCalendar->config['jsUrl'].'mgr/sections/index.js');
     }
