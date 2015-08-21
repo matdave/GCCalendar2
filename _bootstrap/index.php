@@ -151,7 +151,7 @@ if (!createObject('modChunk', array(
 }
 
 // Menu
-if (!createObject('modAction', array(
+/*if (!createObject('modAction', array(
     'namespace' => 'gcCalendar',
     'parent' => '0',
     'controller' => 'index',
@@ -162,7 +162,7 @@ if (!createObject('modAction', array(
 }
 $action = $modx->getObject('modAction', array(
     'namespace' => 'gcCalendar'
-));
+));*/
 
 if ($action) {
     if (!createObject('modMenu', array(
@@ -171,7 +171,8 @@ if ($action) {
         'description' => 'gcCalendar.desc',
         'icon' => '',
         'menuindex' => '0',
-        'action' => $action->get('id')
+        'action' => 'home',
+        'namespace' => 'gcCalendar'
     ), 'text', false)) {
         echo "Error creating menu.\n";
     }

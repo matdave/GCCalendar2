@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/model/gcCalendar/gccalendar.class.php';
+require_once dirname(dirname(__FILE__)) . '/model/gcCalendar/gccalendar.class.php';
 abstract class gcCalendarManagerController extends modExtraManagerController {
     /** @var gcCalendar $gcCalendar */
     public $gcCalendar;
@@ -19,6 +19,6 @@ abstract class gcCalendarManagerController extends modExtraManagerController {
     }
     public function checkPermissions() { return true;}
 }
-class IndexManagerController extends gcCalendarManagerController {
+class gcCalendarIndexManagerController extends gcCalendarManagerController {
     public static function getDefaultController() { return 'home'; }
 }
