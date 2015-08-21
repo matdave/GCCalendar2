@@ -345,14 +345,14 @@ gcCalendar.panel.gcCalendar = function(config){
                             var record = new Array;
 
                             var start = new Date(o.start);
-                            var sm = start.getMonth() < 10 ? '0'+start.getMonth() : start.getMonth();
+                            var sm = start.getMonth() < 10 ? '0'+(start.getMonth() + 1) : (start.getMonth() + 1);
                             var sd = start.getDate() < 10 ? '0'+start.getDate() : start.getDate();
                             record.startymd = start.getFullYear() + '-' + sm + '-' + sd;
                             record.starthis = convertToTime(start);
                             record.start = record.startymd + ' ' + record.starthis;
 
                             var end = new Date(o.end);
-                            var em = end.getMonth() < 10 ? '0'+end.getMonth() : end.getMonth();
+                            var em = end.getMonth() < 10 ? '0'+(end.getMonth() + 1) : (end.getMonth() + 1);
                             var ed = end.getDate() < 10 ? '0'+end.getDate() : end.getDate();
                             record.endymd = end.getFullYear() + '-' + em + '-' + ed;
                             record.endhis = convertToTime(end);
