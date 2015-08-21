@@ -370,6 +370,9 @@ gcCalendar.panel.gcCalendar = function(config){
                                 this.updategcCalendarWindow = MODx.load({
                                     xtype: 'gcCalendar-window-gcCalendar-update'
                                     ,record: record
+                                    ,listeners: {
+                                        'success': {fn:function(){Ext.getCmp('calendar-remote-calendar').getActiveView().refresh(true);},scope:this}
+                                    }
                                 });
                             }
                             this.updategcCalendarWindow.setValues(record);

@@ -32,7 +32,7 @@
 .x-tab-strip .x-tab-with-icon span.x-tab-strip-text {
     padding-left: 0px;
 }
-.x-btn-pressed{backround-color: #929292;}
+.x-btn-pressed{background-color: #929292;}
 .x-btn-pressed .x-btn-text,.x-panel-tbar .ext-cal-toolbar .x-btn-pressed button{color: #FFFFFF;text-shadow: 0 1px 0 #6D6D6D;}
 .cirkuitSkin iframe {max-width: 100%;}
 
