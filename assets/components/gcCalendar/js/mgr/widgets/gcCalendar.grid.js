@@ -65,11 +65,19 @@ gcCalendar.grid.gcCalendar = function(config) {
             ,dataIndex: 'ad'
             ,width: 80
             ,sortable: false
+            ,renderer: function(value, metaData, record, row, col, store, gridView){
+                var check = (value)?'<i class="icon icon-check-circle true"></i>':'';
+                return check;
+            }
         },{
             header: ('Repeats')
             ,dataIndex: 'repeating'
             ,sortable: false
             ,width: 60
+            ,renderer: function(value, metaData, record, row, col, store, gridView){
+                var check = (value)?'<i class="icon icon-check-circle true"></i>':'';
+                return check;
+            }
         }]
         ,tbar:[{
             text: _('gcCalendar.event_create')
