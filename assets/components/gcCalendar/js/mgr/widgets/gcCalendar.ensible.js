@@ -101,6 +101,9 @@ gcCalendar.panel.gcCalendar = function(config){
                             this.updategcCalendarWindow = MODx.load({
                                 xtype: 'gcCalendar-window-gcCalendar-update'
                                 ,record: this.rec.data
+                                ,listeners: {
+                                    'success': {fn:function(){Ext.getCmp('calendar-remote-calendar').getActiveView().refresh(true);},scope:this}
+                                }
                             });
                         }
                         this.updategcCalendarWindow.setValues(this.rec.data);
@@ -118,6 +121,9 @@ gcCalendar.panel.gcCalendar = function(config){
                             ,params: {
                                 action: 'mgr/gcCalendar/remove'
                                 ,id: this.rec.data.id
+                            }
+                            ,listeners: {
+                                'success': {fn:function(){Ext.getCmp('calendar-remote-calendar').getActiveView().refresh(true);},scope:this}
                             }
                         });
                     }
@@ -268,7 +274,7 @@ gcCalendar.panel.gcCalendar = function(config){
                         }
                     }
                 }),
-                title: 'Cloud Calendar',
+                title: '',
                 listeners: {
 
                     'eventclick': {
@@ -285,6 +291,9 @@ gcCalendar.panel.gcCalendar = function(config){
                                 this.updategcCalendarWindow = MODx.load({
                                     xtype: 'gcCalendar-window-gcCalendar-update'
                                     ,record: rec.data
+                                    ,listeners: {
+                                        'success': {fn:function(){Ext.getCmp('calendar-remote-calendar').getActiveView().refresh(true);},scope:this}
+                                    }
                                 });
                             }
                             this.updategcCalendarWindow.setValues(rec.data);
@@ -384,13 +393,43 @@ gcCalendar.panel.gcCalendar = function(config){
                         scope: this
                     },
                     'eventmove': {
-                        fn: function(){
+                        fn: function(ctx,rec,date){
+                            console.log(ctx);
+                            var record = rec.data;
+                            var start = new Date(rec.data.start);
+                            var sm = start.getMonth() < 10 ? '0'+(start.getMonth() + 1) : (start.getMonth() + 1);
+                            var sd = start.getDate() < 10 ? '0'+start.getDate() : start.getDate();
+                            record.startymd = start.getFullYear() + '-' + sm + '-' + sd;
+                            if(ctx.xtype != "extensible.monthview" && ctx.xtype != "extensible.multiweekview"){record.starthis = convertToTime(start);}
+                            record.start = record.startymd + ' ' + record.starthis;
+                            var end = new Date(rec.data.end);
+                            var em = end.getMonth() < 10 ? '0'+(end.getMonth() + 1) : (end.getMonth() + 1);
+                            var ed = end.getDate() < 10 ? '0'+end.getDate() : end.getDate();
+                            record.endymd = end.getFullYear() + '-' + em + '-' + ed;
+                            if(ctx.xtype != "extensible.monthview" && ctx.xtype != "extensible.multiweekview"){record.endhis = convertToTime(end);}
+                            record.end = record.endymd + ' ' + record.endhis;
+                            record.ad = (record.starthis == "12:00 AM" && (record.endhis == "11:30 PM" || record.endhis == "12:00 AM"))?1:0;
+                            record.action = 'mgr/gcCalendar/update';
+                            MODx.Ajax.request({
+                                url:gcCalendar.config.connectorUrl
+                                ,params: record
+                                ,listeners: {
+                                    'success':{
+                                        fn: function(){
+                                            Ext.getCmp('calendar-remote-calendar').getActiveView().refresh(true);
+                                        }
+                                        ,scope:this
+                                    }
+                                }
+                            });
                             return false;
                         },
                         scope: this
                     },
                     'eventresize': {
-                        fn: function(){
+                        fn: function(panel,record){
+                            console.log(panel);
+                            console.log(record);
                             return false;
                         },
                         scope: this
