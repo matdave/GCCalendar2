@@ -38,7 +38,7 @@
 		<field key="title" dbtype="varchar" precision="100" phptype="string" null="true" />
 		<field key="loc" dbtype="varchar" precision="255" phptype="string" null="true" />
 		<field key="notes" dbtype="text" phptype="string" null="true" />
-		<field key="ad" dbtype="boolean" phptype="boolean" null="false" />
+		<field key="ad" dbtype="boolean" phptype="boolean" null="false" default="0" />
 		<field key="cat" dbtype="varchar" precision="45" phptype="string" null="true" />
 		<field key="link" dbtype="varchar" precision="195" phptype="string" null="true" />
 		<field key="ov" dbtype="boolean" phptype="boolean" null="false" default="0"/>
