@@ -51,7 +51,9 @@
     height: 19px !important;
     color: #646464;
 }
-
+i.true{color:green;}
+i.false{color:#999999;}
+i.caution{color: #C3950A;}
 /*SHAME!!*/
 
 .x-window-proxy {display: none !important;}
