@@ -1,30 +1,30 @@
 .x-superboxselect-input input {
-	background: transparent;
+    background: transparent;
 }
 .x-superboxselect-item-hover {
-background: #FDFDFD;
-border: 1px solid #E7E7E7;
+    background: #FDFDFD;
+    border: 1px solid #E7E7E7;
 }
 .x-superboxselect-item {
-position: relative;
--moz-border-radius: 6px;
--webkit-border-radius: 3px;
-border-radius: 3px;
-o-border-radius: 3px;
-khtml-border-radius: 3px;
-border: 1px solid #D5D5D6;
-background-color: #F1F1F1;
-padding: 1px 15px 1px 5px !important;
-box-shadow: 1px 1px 3px #9e9e9e;
+    position: relative;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    o-border-radius: 3px;
+    khtml-border-radius: 3px;
+    border: 1px solid #D5D5D6;
+    background-color: #F1F1F1;
+    padding: 1px 15px 1px 5px !important;
+    box-shadow: 1px 1px 3px #9e9e9e;
 }
 .x-superboxselect-item-focus{
-background:#cecece;
+    background:#cecece;
 }
 .x-window .x-panel-tl, .x-window .x-panel-ml, .x-window .x-panel-bl, .x-window .x-panel-mc, .x-window .x-panel-tr, .x-window .x-panel-mr, .x-window .x-panel-br {
-background-color: transparent;
+    background-color: transparent;
 }
 .x-tool-left, .x-tool-collapse-west, .x-tool-expand-east {
-background-position: 0 -64px;
+    background-position: 0 -64px;
 }
 .x-tool-left-over,.x-tool-collapse-west-over, .x-tool-expand-east-over{
     background-position: -16px -64px;
@@ -32,139 +32,28 @@ background-position: 0 -64px;
 .x-tab-strip .x-tab-with-icon span.x-tab-strip-text {
     padding-left: 0px;
 }
-.x-btn-pressed{
-    background-color: #9f2b94;
-    background: -moz-linear-gradient(center bottom,#9f2b94 0%,#d03cc2 100%) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#d03cc2),color-stop(100%,#9f2b94));
-    background: -webkit-linear-gradient(center bottom,#9f2b94 0%,#d03cc2 100%);
-    background: -o-linear-gradient(center bottom,#9f2b94 0%,#d03cc2 100%);
-    background: -ms-linear-gradient(center bottom,#9f2b94 0%,#d03cc2 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d03cc2,endColorstr=#9f2b94,GradientType=0);
-    background: linear-gradient(center bottom,#9f2b94 0%,#d03cc2 100%);
-}
+.x-btn-pressed{background-color: #929292;}
 .x-btn-pressed .x-btn-text,.x-panel-tbar .ext-cal-toolbar .x-btn-pressed button{color: #FFFFFF;text-shadow: 0 1px 0 #6D6D6D;}
 .cirkuitSkin iframe {max-width: 100%;}
 
-/*Calendar View*/
-
-.ext-cal-monthview .ext-cal-week-link, .ext-cal-monthview .ext-cal-week-link-hd {
-    width: 20px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: #EFEFEF;
-    border-top: 1px solid #E2C0EB;
-    border-right: 1px solid #E2C0EB;
-    font-size: 10px;
-    color: #999;
-    padding: 3px 0 0;
-    text-align: center;
-    cursor: pointer;
-}
-.ext-cal-month-hd .ext-cal-hd-day {
-    color: #F0F0F0;
-    text-shadow: 0 -1px 0 #363636;
-    border-left: 1px solid #969696;
-    border-right: 1px solid #464646;
-}
-.ext-cal-week-links .ext-cal-day-first {
-    border-left: 1px solid #E2C0EB;
-}
-.ext-cal-month-hd .ext-cal-hd-days-tbl {
-    border-top: 1px solid #E2C0EB;
-    background: #606060;
-    background: -moz-linear-gradient(center bottom,#606060 0%,#808080 100%) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#808080),color-stop(100%,#606060));
-    background: -webkit-linear-gradient(center bottom,#606060 0%,#808080 100%);
-    background: -o-linear-gradient(center bottom,#606060 0%,#808080 100%);
-    background: -ms-linear-gradient(center bottom,#606060 0%,#808080 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#808080,endColorstr=#606060,GradientType=0);
-    background: linear-gradient(center bottom,#606060 0%,#808080 100%);
-    border: 0 none;
-    border-bottom: 1px solid #333;
-}
-.ext-cal-dayview .ext-cal-hd-days-tbl{
-    border-top: 1px solid #E2C0EB;
-    background:transparent;
-}
-.ext-cal-hd-ct {
-    border-bottom: 1px solid #E2C0EB;
-}
-.ext-cal-monthview .ext-cal-hd-ct {
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100%;
-    background: #efefef;
-}
-.ext-cal-day {
-    border-left: 1px solid #E2C0EB;
-    cursor: pointer;
-}
-.ext-cal-dayview .ext-cal-gutter,.x-win .ext-cal-dayview .ext-cal-gutter-rt {
-    background: #FCFAFF;
-}
-.ext-cal-noheader td.ext-cal-dtitle-first,
-.ext-cal-monthview .ext-cal-week-link-hd {
-    border-top: 1px solid #E2c0eb;
-}
-.ext-cal-day-we {
-    background: #FCFAFF;
-}
-td.ext-cal-dtitle {
-    font-family: helvetica, arial, sans-serif;
-    border-top: 1px solid #E2c0eb;
-    color: #97A5B1;
-    line-height: 14px;
-    overflow: hidden;
-    text-align: right;
-    font-size: 16px;
-    padding-top: 1px;
-    padding-right: 1px;
-    padding-left: 1px;
-}
-td.ext-cal-dtitle-first {
-    border-top: none;
-}
-.ext-cal-dayview .ext-cal-bg-tbl {
-    background-color: #fff;
-    margin-top: -1px;
-    border-bottom: none;
-    border-right: none;
-}
-.ext-cal-day-times {
-background-color: #FCFAFF;
-    color: #666;
-    padding: 1px 0 0 0;
-    text-align: right;
-    vertical-align: top;
-}
-.ext-cal-day-col .x-cal-default, .ext-dd-drag-proxy .x-cal-default, .x-cal-default-ad, .x-cal-default-ad .ext-cal-evm, .x-cal-default .ext-cal-picker-icon, .x-cal-default-x dl, .x-calendar-palette em .x-cal-default {
-    background: #17B10A;
-}
-.ext-strict .ext-webkit .x-small-editor .x-form-field-wrap .x-form-trigger {
-    height: 16px;
-    top: 7px;
-    width: 32px;
-    right: 0px;
-}
 .delete-button{margin-top: 15px;
-background: -moz-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) repeat scroll 0 0 transparent !important;
-background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7F7F7),color-stop(100%,#929292)) !important;
-background: -webkit-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
-background: -o-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
-background: -ms-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#929292,endColorstr=#F7F7F7,GradientType=0) !important;
-background: linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
-clear:both;}
+    background: -moz-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) repeat scroll 0 0 transparent !important;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7F7F7),color-stop(100%,#929292)) !important;
+    background: -webkit-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
+    background: -o-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
+    background: -ms-linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#929292,endColorstr=#F7F7F7,GradientType=0) !important;
+    background: linear-gradient(center bottom,#F7F7F7 0%,#929292 100%) !important;
+    clear:both;}
 .delete-button button{
     font-size: 10px !important;
     padding: 0px !important;
     height: 19px !important;
     color: #646464;
 }
-
+i.true{color:green;}
+i.false{color:#999999;}
+i.caution{color: #C3950A;}
 /*SHAME!!*/
 
 .x-window-proxy {display: none !important;}

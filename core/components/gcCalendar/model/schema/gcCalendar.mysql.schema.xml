@@ -22,10 +22,10 @@
         <field key="evid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
         <field key="start" dbtype="varchar" precision="20" phptype="string" null="true" />
         <field key="end" dbtype="varchar" precision="20" phptype="string" null="true" />
-        <field key="pr" dbtype="boolean" phptype="boolean" null="false" />
-        <field key="rep" dbtype="boolean" phptype="boolean" null="false" />
-        <field key="ov" dbtype="boolean" phptype="boolean" null="false" />
-        <field key="ad" dbtype="boolean" phptype="boolean" null="false" />
+        <field key="pr" dbtype="boolean" phptype="boolean" null="false" default="0"/>
+        <field key="rep" dbtype="boolean" phptype="boolean" null="false" default="0" />
+        <field key="ov" dbtype="boolean" phptype="boolean" null="false" default="0" />
+        <field key="ad" dbtype="boolean" phptype="boolean" null="false" default="0" />
         <composite alias="dates" class="GcCalendarDates" local="evid" foreign="id" cardinality="one" owner="foreign" />
         <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
       			<column key="id" collation="A" null="false" />
@@ -38,7 +38,7 @@
 		<field key="title" dbtype="varchar" precision="100" phptype="string" null="true" />
 		<field key="loc" dbtype="varchar" precision="255" phptype="string" null="true" />
 		<field key="notes" dbtype="text" phptype="string" null="true" />
-		<field key="ad" dbtype="boolean" phptype="boolean" null="false" />
+		<field key="ad" dbtype="boolean" phptype="boolean" null="false" default="0" />
 		<field key="cat" dbtype="varchar" precision="45" phptype="string" null="true" />
 		<field key="link" dbtype="varchar" precision="195" phptype="string" null="true" />
 		<field key="ov" dbtype="boolean" phptype="boolean" null="false" default="0"/>
